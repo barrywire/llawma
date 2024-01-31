@@ -11,7 +11,7 @@ custom_prompt_template = """
 Use the following pieces of information to answer the user's questions. 
 If you don't know the answer, please just say that you do not know it, don't try to make up an answer.
 
-Context: {}
+Context: {context}
 Question: {question}
 Only return the helpful answer below and nothing else.
 
@@ -108,7 +108,7 @@ async def main(message):
     callback = cl.AsyncLangChainCallbackHandler(
         stream_final_answer=True,
         answer_prefix_tokens=["FINAL", "ANSWER"],)
-    cb.answer_reached = True
+    callback.answer_reached = True
     res = await chain.acall(message, callbacks=[callback])
     
     answer = res["result"]

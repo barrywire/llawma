@@ -15,7 +15,7 @@ Context: {context}
 Question: {question}
 Only return the helpful answer below and nothing else.
 
-Helpful answer: {answer}
+
 """
 
 
@@ -102,18 +102,20 @@ async def start():
 
 
 @cl.on_message
-async def main(message):
+async def main(message: cl.Message):
     # chain = cl.user_session.get("chain")
-    chain = cl.user_session.set("chain")
-    callback = cl.AsyncLangChainCallbackHandler(
-        stream_final_answer=True,
-        answer_prefix_tokens=["FINAL", "ANSWER"],)
-    callback.answer_reached = True
-    res = await chain.acall(message, callbacks=[callback])
+    # chain = cl.user_session.set("chain")
+    chain = cl.user_session.get("chain")
+    # callback = cl.AsyncLangchainCallbackHandler(
+    #     stream_final_answer=True,
+    #     answer_prefix_tokens=["FINAL", "ANSWER"],)
+    # callback.answer_reached = True
+    callback = cl.AsyncLangchainCallbackHandler()
+    res = await chain.acall(message.content, callbacks=[callback])
     
     answer = res["result"]
     sources = res["source_documents"]
-    
+
     if sources:
         answer += f"\nSources:\n" + str(sources)
     else:

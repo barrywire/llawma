@@ -1,7 +1,7 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain_community.embeddings import HuggingFaceEmbeddings
-from langchain_community.vectorstores import FAISS
+from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import FAISS
 
 DATA_PATH = "data"
 DB_FAISS_PATH = "vectorstore/db_faiss"
@@ -19,6 +19,7 @@ def create_vector_db():
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=500, chunk_overlap=50)
     sentences = text_splitter.split_documents(documents)
+    # sentences = text_splitter.create_documents([documents])
 
     # Create embeddings
     # embeddings = HuggingFaceEmbeddings("distilbert-base-uncased")

@@ -9,4 +9,4 @@ This project exists thanks to all the people who contribute.
 - [Laurent Namasaka](https://github.com/laurentnamasaka)
 - [Barnabas Wire](https://github.com/barrywire)
 - [Samson Rasugu](https://github.com/samrasugu)
-- Melvin Lukorito
+- [Melvin Lukorito](https://github.com/lukorito99)

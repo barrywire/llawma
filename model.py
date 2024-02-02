@@ -16,7 +16,7 @@ Question: {question}
 Only return the helpful answer below and nothing else.
 
 
-"""
+""" #Mitigate model hallucination
 
 
 def set_custom_prompt():
